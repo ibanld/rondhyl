@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./index.css">
+    <title>Rondhyl</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="./favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            Rondhyl
+        </a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row mt-3" >
+            <div class="col-lg-6 mx-auto col-sm-12">
+                <div class="bg-dark border border-dark ml-5 p-2" id="character-form">
+                    <form class='bg-dark text-light' id='hero-form'>
+                        <legend class='text-light'>Bienvenido a Rondhyl</legend>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Elegir nombre y clase</span>
+                            </div>
+                            <input type="text" aria-label="name" class="form-control" name='name' required>
+                            <select class="form-control" id="class" name='class' required>
+                                <option>---</option>
+                                <option value="Paladín">Paladín</option>
+                                <option value='Nigromante'>Nigromante</option>
+                                <option value='Perillán'>Perillán</option>
+                                <option value='Tirador'>Tirador</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="race">Selecciona tu raza</label>
+                            <select class="form-control" id="race" name='race' required>
+                                <option>---</option>
+                                <option value="Humano">Humano</option>
+                                <option value='Humana'>Humana</option>
+                                <option value='Elfo'>Elfo</option>
+                                <option value='Elfa'>Elfa</option>
+                                <option value='Enano'>Enano</option>
+                                <option value='Enana'>Enana</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="home">Lugar de origen</label>
+                            <input type="text" class="form-control" id='home' name='home' placeholder="Montañas de Arimia, Vindertol, Fallwen..." required>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-info" id='play-btn'>Crear Personaje</button>
+                    </form>
+                </div>
+                <!--  -->
+                <div class="card invisible" id='character-card'>
+                    <div class="card-header bg-dark text-light">
+                        <div class="media">
+                            <img src="./img/" class="mr-3" alt="Avatar" id='avatar'>
+                            <div class="media-body">
+                                <h5 class="mt-0" id='card-name'></h5>
+                                <h6 id='card-bio'></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body bg-secondary text-light">
+                        <h5 class="card-title">Habilidades</h5>
+                        <ul class="list-group list-group-horizontal-sm text-dark" id='skills'></ul>
+                        <h5 class="card-title">Estadísticas</h5>
+                        <ul class="list-group text-dark">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h5>❤️ Vida</h5>
+                                <span class="badge badge-danger badge-pill" id='life-count'></span>
+                                <div>
+                                    <button type="button" class="btn btn-success btn-sm" id='add-life'><i class="fas fa-plus-circle"></i></button>
+                                    <button type="button" class="btn btn-danger btn-sm" id='del-life'><i class="fas fa-minus-circle"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h5>☄️ Maná</h5>
+                                <span class="badge badge-primary badge-pill" id='mana-count'></span>
+                                <div>
+                                    <button type="button" class="btn btn-success btn-sm" id='add-mana'><i class="fas fa-plus-circle"></i></button>
+                                    <button type="button" class="btn btn-danger btn-sm" id='del-mana'><i class="fas fa-minus-circle"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h5>💪🏻 Fuerza</h5>
+                                <span class="badge badge-warning badge-pill" id='strength-count'></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h5>🍀 Suerte</h5>
+                                <span class="badge badge-success badge-pill" id='luck-count'></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-dark text-center">
+                        <a class="btn btn-light" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Ver Mochila
+                        </a>
+                        <div class="collapse mt-2" id="collapseExample">
+                            <div class="card">
+                                <form id='object-form'>
+                                <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Añadir a la mochila..." name="add-object">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit" id="add-btn">🎒</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <ul class="list-group" id='backpack'>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 mx-auto col-sm-12" >
+                
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="./index.js"></script>
+</body>
+</html>

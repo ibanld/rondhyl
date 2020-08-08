@@ -1,0 +1,18 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#character-form {
+	border-radius: 1%;
+	position: absolute;
+}
+
+#avatar {
+	border-radius: 100%;
+}
+
+#character-card {
+	z-index: 99999;
+}
